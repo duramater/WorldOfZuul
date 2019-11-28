@@ -50,22 +50,22 @@ public class Parser
             word1 = tokenizer.next();      // get first word
             if(tokenizer.hasNext()) {
                 word2 = tokenizer.next();      // get second word
+                if(tokenizer.hasNext()) {
+                    word3 = tokenizer.next();      // get third word
+                    // note: we just ignore the rest of the input line.
+                }
                 // note: we just ignore the rest of the input line.
-            }
-            if(tokenizer.hasNext()){
-                word3 =tokenizer.next();
             }
         }
 
         // Now check whether this word is known. If so, create a command
         // with it. If not, create a "null" command (for unknown command).
         if(commands.isCommand(word1)) {
-            return new Command(word1, word2);
+            return new Command(word1, word2, word3);
         }
         else {
-            return new Command(null, word2); 
+            return new Command(null, word2, word3);
         }
-        
     }
 
     /**
